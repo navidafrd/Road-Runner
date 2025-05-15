@@ -1,2 +1,271 @@
-# Road-Runner
-https://github.com/new
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Road Runner Rent a Car</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 20px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      font-weight: 600;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffd700;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto 60px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      padding: 40px;
+    }
+    h2 {
+      color: #764ba2;
+      margin-bottom: 30px;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 1.5px;
+    }
+
+    /* Fleet Section */
+    .car-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .car {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(118, 75, 162, 0.4);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      background: linear-gradient(145deg, #d9b3ff, #9d79d6);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .car:hover {
+      transform: scale(1.05);
+    }
+    .car img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-bottom: 3px solid #fff;
+      border-radius: 0 0 15px 15px;
+      filter: brightness(0.9);
+      transition: filter 0.3s ease;
+    }
+    .car:hover img {
+      filter: brightness(1);
+    }
+    .car-content {
+      padding: 20px;
+    }
+    .car-content h3 {
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: 1.3rem;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    .car-content p {
+      font-weight: 500;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    .car-content button {
+      background: #ffd700;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 25px;
+      font-weight: 700;
+      color: #5a3e00;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255,215,0,0.6);
+      transition: background 0.3s ease, color 0.3s ease;
+      width: 100%;
+    }
+    .car-content button:hover {
+      background: #5a3e00;
+      color: #ffd700;
+    }
+
+    /* Booking Form */
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    label {
+      font-weight: 600;
+      color: #764ba2;
+      letter-spacing: 1px;
+    }
+    input, button[type="submit"] {
+      padding: 12px 15px;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: 2px solid #764ba2;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    input:focus {
+      border-color: #ffd700;
+      box-shadow: 0 0 8px #ffd700;
+    }
+    button[type="submit"] {
+      background: #764ba2;
+      color: white;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(118, 75, 162, 0.7);
+    }
+    button[type="submit"]:hover {
+      background: #5a3e99;
+    }
+
+    /* Contact Section */
+    #contact p {
+      text-align: center;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      text-align: center;
+      padding: 18px 0;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-top: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+      nav a {
+        margin-left: 0;
+        margin-right: 15px;
+      }
+      .car-content button {
+        padding: 12px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Road Runner</h1>
+    <nav>
+      <a href="#fleet">Fleet</a>
+      <a href="#booking">Booking</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="fleet">
+      <h2>Our Fleet</h2>
+      <div class="car-list">
+        <div class="car">
+          <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=500&q=60" alt="Toyota Corolla" />
+          <div class="car-content">
+            <h3>Toyota Corolla</h3>
+            <p>Economy</p>
+            <button>Book Now</button>
+          </div>
+        </div>
+        <div class="car">
+          <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=500&q=60" alt="Honda Civic" />
+          <div class="car-content">
+            <h3>Honda Civic</h3>
+            <p>Luxury</p>
+            <button>Book Now</button>
+          </div>
+        </div>
+        <div class="car">
+          <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?auto=format&fit=crop&w=500&q=60" alt="Suzuki WagonR" />
+          <div class="car-content">
+            <h3>Suzuki WagonR</h3>
+            <p>Compact</p>
+            <button>Book Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="booking" style="margin-top: 50px;">
+      <h2>Book Your Ride</h2>
+      <form onsubmit="event.preventDefault(); alert('Booking Submitted!');">
+        <label for="pickup">Pickup Location</label>
+        <input type="text" id="pickup" placeholder="Enter pickup location" required />
+
+        <label for="dropoff">Drop-off Location</label>
+        <input type="text" id="dropoff" placeholder="Enter drop-off location" required />
+
+        <label for="date">Date</label>
+        <input type="date" id="date" required />
+
+        <button type="submit">Submit Booking</button>
+      </form>
+    </section>
+
+    <section id="contact" style="margin-top: 50px;">
+      <h2>Contact Us</h2>
+      <p>Email: info@roadrunner.com</p>
+      <p>Phone: +92 3152929443</p>
+      <p>Address: Islamabad, Pakistan</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Road Runner. All rights reserved.
+  </footer>
+</body>
+</html>
